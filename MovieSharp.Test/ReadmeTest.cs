@@ -25,6 +25,25 @@ namespace MovieSharp.Test
             {
                 Console.WriteLine("id={0}; title={1}; voteCount={2}", movie.Id, movie.Title, movie.VoteCount);
             }
+
+            //-----------------------------------------------------------------------------
+            // Error Handling
+            //-----------------------------------------------------------------------------
+            try
+            {
+                service.SearchMovies("#");
+            }
+            catch (MovieSharpException e)
+            {
+                Console.WriteLine("HttpStatus={0}; StatusCode={1}; Message={2}",
+                                   e.HttpStatus, e.StatusCode, e.Message);
+                // Output:
+                // HttpStatus=NotFound;
+                // StatusCode=6; 
+                // Message=Invalid id: The pre-requisite id is invalid or not found.
+
+                // TODO: handle the exception
+            }
         }
     }
 }
