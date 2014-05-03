@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieSharp", "MovieSharp\MovieSharp.csproj", "{19728573-EBED-42D6-8972-2D45FC1360DB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieSharp.Test", "MovieSharp.Test\MovieSharp.Test.csproj", "{5884CA51-AFD4-44F7-811C-869591F40E8E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{19728573-EBED-42D6-8972-2D45FC1360DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19728573-EBED-42D6-8972-2D45FC1360DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19728573-EBED-42D6-8972-2D45FC1360DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19728573-EBED-42D6-8972-2D45FC1360DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5884CA51-AFD4-44F7-811C-869591F40E8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5884CA51-AFD4-44F7-811C-869591F40E8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5884CA51-AFD4-44F7-811C-869591F40E8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5884CA51-AFD4-44F7-811C-869591F40E8E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = MovieSharp\MovieSharp.csproj
+	EndGlobalSection
+EndGlobal

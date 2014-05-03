@@ -1,0 +1,44 @@
+# MacOS
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# Visual Studio
+packages
+*.obj
+*.pdb
+*.user
+*.aps
+*.pch
+*.vspscc
+*_i.c
+*_p.c
+*.ncb
+*.suo
+*.tlb
+*.tlh
+*.bak
+*.cache
+*.ilk
+*.log
+ClientBin
+[Bb]in
+[Dd]ebug*/
+*.lib
+*.sbr
+obj/
+[Rr]elease*/
+_ReSharper*/
+[Tt]est[Rr]esult*
+Examples*/
+SerializerTest*/
+*.csproj.user
+*.resharper*
+Download/
+
+# Xamarin
+*.pidb
+*.userprefs
+test-results
+Components/
