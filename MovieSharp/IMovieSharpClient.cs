@@ -8,5 +8,7 @@ namespace MovieSharp
     {
         MoviesResponse SearchMovies(string query);
         Task<MoviesResponse> SearchMoviesAsync(string query);
+		CollectionsResponse SearchCollections(string query);
+		Task<CollectionsResponse> SearchCollectionsAsync(string query);
     }
 }

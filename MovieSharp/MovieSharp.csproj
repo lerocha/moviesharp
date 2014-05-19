@@ -16,7 +16,7 @@
     <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
-    <ProductVersion>10.0.0</ProductVersion>
+    <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -48,6 +48,8 @@
     <Compile Include="MovieSharpException.cs" />
     <Compile Include="MovieSharpClient.cs" />
     <Compile Include="MovieSharpRequestFactory.cs" />
+    <Compile Include="Data\Collection.cs" />
+    <Compile Include="Data\CollectionsResponse.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

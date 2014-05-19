@@ -37,6 +37,22 @@ namespace MovieSharp
             return response.Data;
         }
 
+		public CollectionsResponse SearchCollections(string query)
+		{
+			if (query == null) throw new ArgumentNullException("query");
+			var request = MovieSharpRequestFactory.CreateQueryCollectionsRequest(ApiKey, DefaultBaseUrl, query);
+			var response = ExecuteRequest<CollectionsResponse>(request);
+			return response.Data;
+		}
+
+		public async Task<CollectionsResponse> SearchCollectionsAsync(string query)
+		{
+			if (query == null) throw new ArgumentNullException("query");
+			var request = MovieSharpRequestFactory.CreateQueryCollectionsRequest(ApiKey, DefaultBaseUrl, query);
+			var response = await ExecuteRequestAsync<CollectionsResponse>(request);
+			return response.Data;
+		}
+
         private HttpResponse<T> ExecuteRequest<T>(HttpRequestMessage request) where T : new()
         {
             var response = ExecuteRequestAsync<T>(request).Result;

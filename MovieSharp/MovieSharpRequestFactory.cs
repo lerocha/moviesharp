@@ -8,15 +8,23 @@ namespace MovieSharp
 {
     public class MovieSharpRequestFactory
     {
+		public static HttpRequestMessage CreateQueryMoviesRequest(string apiKey, string baseUrl, string query)
+		{
+			return new HttpRequestMessage
+			{
+				RequestUri = new Uri(string.Format("{0}/3/search/movie?api_key={1}&query={2}", baseUrl, apiKey, query)),
+				Method = HttpMethod.Get
+			};
+		}
 
-        public static HttpRequestMessage CreateQueryMoviesRequest(string apiKey, string baseUrl, string query)
-        {
-            return new HttpRequestMessage
-            {
-                RequestUri = new Uri(string.Format("{0}/3/search/movie?api_key={1}&query={2}", baseUrl, apiKey, query)),
-                Method = HttpMethod.Get
-            };
-        }
+		public static HttpRequestMessage CreateQueryCollectionsRequest(string apiKey, string baseUrl, string query)
+		{
+			return new HttpRequestMessage
+			{
+				RequestUri = new Uri(string.Format("{0}/3/search/collection?api_key={1}&query={2}", baseUrl, apiKey, query)),
+				Method = HttpMethod.Get
+			};
+		}
 
         public static HttpRequestMessage CreateRequest()
         {
