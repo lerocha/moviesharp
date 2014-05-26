@@ -53,6 +53,20 @@ namespace MovieSharp
 			return response.Data;
 		}
 
+		public Movie GetMovie (int id)
+		{
+			var request = MovieSharpRequestFactory.CreateGetMovieRequest(ApiKey, DefaultBaseUrl, id);
+			var response = ExecuteRequest<Movie>(request);
+			return response.Data;
+		}
+
+		public async Task<Movie> GetMovieAsync (int id)
+		{
+			var request = MovieSharpRequestFactory.CreateGetMovieRequest(ApiKey, DefaultBaseUrl, id);
+			var response = await ExecuteRequestAsync<Movie>(request);
+			return response.Data;
+		}
+
         private HttpResponse<T> ExecuteRequest<T>(HttpRequestMessage request) where T : new()
         {
             var response = ExecuteRequestAsync<T>(request).Result;

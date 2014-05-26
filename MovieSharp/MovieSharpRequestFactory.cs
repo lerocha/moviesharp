@@ -26,6 +26,15 @@ namespace MovieSharp
 			};
 		}
 
+		public static HttpRequestMessage CreateGetMovieRequest(string apiKey, string baseUrl, int id)
+		{
+			return new HttpRequestMessage
+			{
+				RequestUri = new Uri(string.Format("{0}/3/movie/{1}?api_key={2}", baseUrl, id, apiKey)),
+				Method = HttpMethod.Get
+			};
+		}
+
         public static HttpRequestMessage CreateRequest()
         {
             var request = new HttpRequestMessage();
