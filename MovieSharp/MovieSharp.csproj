@@ -50,6 +50,9 @@
     <Compile Include="MovieSharpRequestFactory.cs" />
     <Compile Include="Data\Collection.cs" />
     <Compile Include="Data\CollectionsResponse.cs" />
+    <Compile Include="Data\Genre.cs" />
+    <Compile Include="Data\Company.cs" />
+    <Compile Include="Data\Country.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
