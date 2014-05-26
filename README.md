@@ -26,6 +26,10 @@ foreach (Movie movie in response.Results)
     Console.WriteLine("id={0}; title={1}; voteCount={2}", movie.Id, movie.Title, movie.VoteCount);
 }
 
+// Get a movie by id
+Movie movie2 = service.GetMovie(122);
+Console.WriteLine("id={0}; title={1}; voteCount={2}", movie2.Id, movie2.Title, movie2.VoteCount);
+
 //-----------------------------------------------------------------------------
 // Error Handling
 //-----------------------------------------------------------------------------
