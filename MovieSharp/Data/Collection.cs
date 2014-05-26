@@ -7,7 +7,7 @@ namespace MovieSharp.Data
 	public class Collection
 	{
 		public int Id { get; set; }
-		public double Name { get; set; }
+		public string Name { get; set; }
 		[JsonProperty("backdrop_path")]
 		public string BackdropPath { get; set; }
 		[JsonProperty("poster_path")]

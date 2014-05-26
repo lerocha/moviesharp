@@ -11,8 +11,8 @@ namespace MovieSharp.Data
         public bool IsAdult { get; set; }
         [JsonProperty("backdrop_path")]
         public string BackdropPath { get; set; }
-		//[JsonProperty("belongs_to_collection")]
-		//public Collection BelongsToCollection { get; set; }
+		[JsonProperty("belongs_to_collection")]
+		public Collection BelongsToCollection { get; set; }
 		public int Budget { get; set; }
 		public List<Genre> Genres { get; set; }
 		public string Homepage { get; set; }
@@ -29,12 +29,12 @@ namespace MovieSharp.Data
         public double Popularity { get; set; }
 		[JsonProperty("production_companies")]
 		public List<Company> ProductionCompanies { get; set; }
-		//[JsonProperty("production_countries")]
-		//public List<Country> ProductionCountries { get; set; }
+		[JsonProperty("production_countries")]
+		public List<Country> ProductionCountries { get; set; }
 		public int Revenue { get; set; }
 		public int Runtime { get; set; }
-		//[JsonProperty("spoken_languages")]
-		//public List<object> SpokenLanguages { get; set; }
+		[JsonProperty("spoken_languages")]
+		public List<Language> SpokenLanguages { get; set; }
 		public string Status { get; set; }
 		public string Tagline { get; set; }
 		public string Title { get; set; }

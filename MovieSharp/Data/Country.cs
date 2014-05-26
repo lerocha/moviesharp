@@ -7,7 +7,7 @@ namespace MovieSharp
 	public class Country
 	{
 		[JsonProperty("iso_3166_1")]
-		public int CountryCode { get; set; }
+		public string CountryCode { get; set; }
 		public string Name { get; set; }
 	}
 }
