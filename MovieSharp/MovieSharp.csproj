@@ -47,7 +47,6 @@
     <Compile Include="Data\HttpResponse.cs" />
     <Compile Include="MovieSharpException.cs" />
     <Compile Include="MovieSharpClient.cs" />
-    <Compile Include="MovieSharpRequestFactory.cs" />
     <Compile Include="Data\Collection.cs" />
     <Compile Include="Data\CollectionsResponse.cs" />
     <Compile Include="Data\Genre.cs" />

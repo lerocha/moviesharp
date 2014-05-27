@@ -35,7 +35,11 @@ namespace MovieSharp
         public MoviesResponse SearchMovies(string query)
         {
             if (query == null) throw new ArgumentNullException("query");
-            var request = MovieSharpRequestFactory.CreateQueryMoviesRequest(ApiKey, DefaultBaseUrl, query);
+			var request = new HttpRequestMessage
+			{
+				RequestUri = new Uri(string.Format("{0}/3/search/movie?api_key={1}&query={2}", DefaultBaseUrl, ApiKey, query)),
+				Method = HttpMethod.Get
+			};
             var response = ExecuteRequest<MoviesResponse>(request);
             return response.Data;
         }
@@ -43,7 +47,11 @@ namespace MovieSharp
         public async Task<MoviesResponse> SearchMoviesAsync(string query)
         {
             if (query == null) throw new ArgumentNullException("query");
-            var request = MovieSharpRequestFactory.CreateQueryMoviesRequest(ApiKey, DefaultBaseUrl, query);
+			var request = new HttpRequestMessage
+			{
+				RequestUri = new Uri(string.Format("{0}/3/search/movie?api_key={1}&query={2}", DefaultBaseUrl, ApiKey, query)),
+				Method = HttpMethod.Get
+			};
             var response = await ExecuteRequestAsync<MoviesResponse>(request);
             return response.Data;
         }
@@ -51,7 +59,11 @@ namespace MovieSharp
 		public CollectionsResponse SearchCollections(string query)
 		{
 			if (query == null) throw new ArgumentNullException("query");
-			var request = MovieSharpRequestFactory.CreateQueryCollectionsRequest(ApiKey, DefaultBaseUrl, query);
+			var request = new HttpRequestMessage
+			{
+				RequestUri = new Uri(string.Format("{0}/3/search/collection?api_key={1}&query={2}", DefaultBaseUrl, ApiKey, query)),
+				Method = HttpMethod.Get
+			};
 			var response = ExecuteRequest<CollectionsResponse>(request);
 			return response.Data;
 		}
@@ -59,21 +71,33 @@ namespace MovieSharp
 		public async Task<CollectionsResponse> SearchCollectionsAsync(string query)
 		{
 			if (query == null) throw new ArgumentNullException("query");
-			var request = MovieSharpRequestFactory.CreateQueryCollectionsRequest(ApiKey, DefaultBaseUrl, query);
+			var request = new HttpRequestMessage
+			{
+				RequestUri = new Uri(string.Format("{0}/3/search/collection?api_key={1}&query={2}", DefaultBaseUrl, ApiKey, query)),
+				Method = HttpMethod.Get
+			};
 			var response = await ExecuteRequestAsync<CollectionsResponse>(request);
 			return response.Data;
 		}
 
 		public Movie GetMovie (int id)
 		{
-			var request = MovieSharpRequestFactory.CreateGetMovieRequest(ApiKey, DefaultBaseUrl, id);
+			var request = new HttpRequestMessage
+			{
+				RequestUri = new Uri(string.Format("{0}/3/movie/{1}?api_key={2}", DefaultBaseUrl, id, ApiKey)),
+				Method = HttpMethod.Get
+			};
 			var response = ExecuteRequest<Movie>(request);
 			return response.Data;
 		}
 
 		public async Task<Movie> GetMovieAsync (int id)
 		{
-			var request = MovieSharpRequestFactory.CreateGetMovieRequest(ApiKey, DefaultBaseUrl, id);
+			var request = new HttpRequestMessage
+			{
+				RequestUri = new Uri(string.Format("{0}/3/movie/{1}?api_key={2}", DefaultBaseUrl, id, ApiKey)),
+				Method = HttpMethod.Get
+			};
 			var response = await ExecuteRequestAsync<Movie>(request);
 			return response.Data;
 		}
