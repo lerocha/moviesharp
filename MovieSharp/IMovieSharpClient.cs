@@ -7,6 +7,7 @@ namespace MovieSharp
     public interface IMovieSharpClient
     {
 		Collection GetCollection (int id);
+		Task<Collection> GetCollectionAsync (int id);
         MoviesResponse SearchMovies(string query);
         Task<MoviesResponse> SearchMoviesAsync(string query);
 		CollectionsResponse SearchCollections(string query);

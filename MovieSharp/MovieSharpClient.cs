@@ -32,6 +32,17 @@ namespace MovieSharp
 			return response.Data;
 		}
 
+		public async Task<Collection> GetCollectionAsync (int id)
+		{
+			var request = new HttpRequestMessage
+			{
+				RequestUri = new Uri(string.Format("{0}/3/collection/{1}?api_key={2}", DefaultBaseUrl, id, ApiKey)),
+				Method = HttpMethod.Get
+			};
+			var response = await ExecuteRequestAsync<Collection>(request);
+			return response.Data;
+		}
+
         public MoviesResponse SearchMovies(string query)
         {
             if (query == null) throw new ArgumentNullException("query");
