@@ -30,6 +30,14 @@ foreach (Movie movie in response.Results)
 Movie movie2 = service.GetMovie(122);
 Console.WriteLine("id={0}; title={1}; voteCount={2}", movie2.Id, movie2.Title, movie2.VoteCount);
 
+// Get collection by collection id
+Collection collection = service.GetCollection (230);
+Console.WriteLine("id={0}; name={1}; posterPath={2}", collection.Id, collection.Name, collection.PosterPath);
+
+// Get collection images
+CollectionImages collectionImages = service.GetCollectionImages (230);
+Console.WriteLine("id={0}", collectionImages.Id);
+
 //-----------------------------------------------------------------------------
 // Error Handling
 //-----------------------------------------------------------------------------
