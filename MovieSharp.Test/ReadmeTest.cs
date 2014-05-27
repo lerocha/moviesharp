@@ -35,6 +35,9 @@ namespace MovieSharp.Test
 			Collection collection = service.GetCollection (230);
 			Console.WriteLine("id={0}; name={1}; posterPath={2}", collection.Id, collection.Name, collection.PosterPath);
 
+			CollectionImages collectionImages = service.GetCollectionImages (230);
+			Console.WriteLine("id={0}", collectionImages.Id);
+
             //-----------------------------------------------------------------------------
             // Error Handling
             //-----------------------------------------------------------------------------

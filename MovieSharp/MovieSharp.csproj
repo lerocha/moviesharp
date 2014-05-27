@@ -53,6 +53,8 @@
     <Compile Include="Data\Company.cs" />
     <Compile Include="Data\Country.cs" />
     <Compile Include="Data\Language.cs" />
+    <Compile Include="Data\Image.cs" />
+    <Compile Include="Data\CollectionImages.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

@@ -8,6 +8,8 @@ namespace MovieSharp
     {
 		Collection GetCollection (int id);
 		Task<Collection> GetCollectionAsync (int id);
+		CollectionImages GetCollectionImages (int id);
+		Task<CollectionImages> GetCollectionImagesAsync (int id);
         MoviesResponse SearchMovies(string query);
         Task<MoviesResponse> SearchMoviesAsync(string query);
 		CollectionsResponse SearchCollections(string query);

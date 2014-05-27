@@ -43,6 +43,28 @@ namespace MovieSharp
 			return response.Data;
 		}
 
+		public CollectionImages GetCollectionImages (int id)
+		{
+			var request = new HttpRequestMessage
+			{
+				RequestUri = new Uri(string.Format("{0}/3/collection/{1}/images?api_key={2}", DefaultBaseUrl, id, ApiKey)),
+				Method = HttpMethod.Get
+			};
+			var response = ExecuteRequest<CollectionImages>(request);
+			return response.Data;
+		}
+
+		public async Task<CollectionImages> GetCollectionImagesAsync (int id)
+		{
+			var request = new HttpRequestMessage
+			{
+				RequestUri = new Uri(string.Format("{0}/3/collection/{1}/images?api_key={2}", DefaultBaseUrl, id, ApiKey)),
+				Method = HttpMethod.Get
+			};
+			var response = await ExecuteRequestAsync<CollectionImages>(request);
+			return response.Data;
+		}
+
         public MoviesResponse SearchMovies(string query)
         {
             if (query == null) throw new ArgumentNullException("query");
