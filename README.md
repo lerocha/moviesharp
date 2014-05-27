@@ -5,7 +5,12 @@ It implements a simple client for the [The Movie Database][1] targeting multiple
 ### Features
 
 * Supported Platforms: .NET 4 or later, Xamarin iOS, Xamarin Android, Windows Phone 8, Windows 8, and Silverlight 5
-* Supported APIs: Query
+* Supported APIs:
+ * /3/movie/{id}
+ * /3/collection/{id}
+ * /3/collection/{id}/images
+ * /3/search/movie
+ * /3/search/collection
 
 ### Usage
 
