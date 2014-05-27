@@ -1,4 +1,4 @@
-## MovieSharp - The Movie Database REST client for .NET and Xamarin iOS & Android
+## MovieSharp - The Movie Database REST client for .NET, Xamarin.iOS and Xamarin.Android
 
 It implements a simple client for the [The Movie Database][1] targeting multiple platforms (Portable Class Library).
 
