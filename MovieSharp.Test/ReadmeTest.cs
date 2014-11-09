@@ -62,6 +62,7 @@ namespace MovieSharp.Test
 
 				Console.WriteLine("StatusCode={0}; StatusMessage={1}; HttpStatus={2}; ReasonPhrase={3}",
 					// TMDB status code: 6
+					// For TMDB status codes see: https://www.themoviedb.org/documentation/api/status-codes
 					searchMoviesResponse.StatusCode,
 					// TMDB status message: Invalid id: The pre-requisite id is invalid or not found.
 					searchMoviesResponse.StatusMessage,
@@ -71,7 +72,6 @@ namespace MovieSharp.Test
 					searchMoviesResponse.ReasonPhrase
 				);
 
-				// For TMDB status codes see: https://www.themoviedb.org/documentation/api/status-codes
 			}
 		}
 	}
