@@ -29,7 +29,7 @@ namespace MovieSharp
 				Method = HttpMethod.Get
 			};
 			var response = ExecuteRequest<Collection>(request);
-			return response.Data;
+			return response.Body;
 		}
 
 		public async Task<Collection> GetCollectionAsync (int id)
@@ -40,7 +40,7 @@ namespace MovieSharp
 				Method = HttpMethod.Get
 			};
 			var response = await ExecuteRequestAsync<Collection>(request);
-			return response.Data;
+			return response.Body;
 		}
 
 		public CollectionImages GetCollectionImages (int id)
@@ -51,7 +51,7 @@ namespace MovieSharp
 				Method = HttpMethod.Get
 			};
 			var response = ExecuteRequest<CollectionImages>(request);
-			return response.Data;
+			return response.Body;
 		}
 
 		public async Task<CollectionImages> GetCollectionImagesAsync (int id)
@@ -62,7 +62,7 @@ namespace MovieSharp
 				Method = HttpMethod.Get
 			};
 			var response = await ExecuteRequestAsync<CollectionImages>(request);
-			return response.Data;
+			return response.Body;
 		}
 
 		public Movie GetMovie (int id)
@@ -73,7 +73,7 @@ namespace MovieSharp
 				Method = HttpMethod.Get
 			};
 			var response = ExecuteRequest<Movie>(request);
-			return response.Data;
+			return response.Body;
 		}
 
 		public async Task<Movie> GetMovieAsync (int id)
@@ -84,7 +84,7 @@ namespace MovieSharp
 				Method = HttpMethod.Get
 			};
 			var response = await ExecuteRequestAsync<Movie>(request);
-			return response.Data;
+			return response.Body;
 		}
 
         public MoviesResponse SearchMovies(string query)
@@ -96,7 +96,7 @@ namespace MovieSharp
 				Method = HttpMethod.Get
 			};
             var response = ExecuteRequest<MoviesResponse>(request);
-            return response.Data;
+            return response.Body;
         }
 
         public async Task<MoviesResponse> SearchMoviesAsync(string query)
@@ -108,7 +108,7 @@ namespace MovieSharp
 				Method = HttpMethod.Get
 			};
             var response = await ExecuteRequestAsync<MoviesResponse>(request);
-            return response.Data;
+            return response.Body;
         }
 
 		public CollectionsResponse SearchCollections(string query)
@@ -120,7 +120,7 @@ namespace MovieSharp
 				Method = HttpMethod.Get
 			};
 			var response = ExecuteRequest<CollectionsResponse>(request);
-			return response.Data;
+			return response.Body;
 		}
 
 		public async Task<CollectionsResponse> SearchCollectionsAsync(string query)
@@ -132,52 +132,52 @@ namespace MovieSharp
 				Method = HttpMethod.Get
 			};
 			var response = await ExecuteRequestAsync<CollectionsResponse>(request);
-			return response.Data;
+			return response.Body;
 		}
 
-        private HttpResponse<T> ExecuteRequest<T>(HttpRequestMessage request) where T : new()
+        private BaseResponse<T> ExecuteRequest<T>(HttpRequestMessage request) where T : new()
         {
             var response = ExecuteRequestAsync<T>(request).Result;
-            if (!response.IsSuccessStatusCode)
+            if (!response.IsOk)
             {
                 throw new MovieSharpException(response.StatusMessage, response.HttpStatus, response.StatusCode, null);
             }
             return response;
         }
 
-        private async Task<HttpResponse<T>> ExecuteRequestAsync<T>(HttpRequestMessage request) where T : new()
-        {
-            using (var httpClient = new HttpClient(new HttpClientHandler()))
-            {
-                var httpResponseMessage = await httpClient.SendAsync(request);
+        private async Task<BaseResponse<T>> ExecuteRequestAsync<T>(HttpRequestMessage request) where T : new()
+		{
+			using (var httpClient = new HttpClient (new HttpClientHandler ())) {
+				// Send the request.
+				var httpResponseMessage = await httpClient.SendAsync (request);
 
-                var responseContent = await httpResponseMessage.Content.ReadAsStringAsync();
-                Debug.WriteLine("HttpStatus={0}; StatusCode={1}; StatusMessage={2}; Data={3}", httpResponseMessage.StatusCode, string.Empty, httpResponseMessage.ReasonPhrase, responseContent);
+				// Read the content as string.
+				var content = await httpResponseMessage.Content.ReadAsStringAsync ();
 
-                var response = new HttpResponse<T>
-                                         {
-                                             HttpStatus = httpResponseMessage.StatusCode,
-                                             IsSuccessStatusCode = httpResponseMessage.IsSuccessStatusCode,
-                                             StatusMessage = httpResponseMessage.ReasonPhrase
-                                         };
+				var response = new BaseResponse<T> {
+					HttpStatus = httpResponseMessage.StatusCode,
+					IsOk = httpResponseMessage.IsSuccessStatusCode,
+					ReasonPhrase = httpResponseMessage.ReasonPhrase
+				};
 
-                // Parse the response
-                if (httpResponseMessage.IsSuccessStatusCode)
-                {
-                    // Parse the successful the response.
-                    response.Data = responseContent.ToObject<T>();
-                }
-                else
-                {
-                    // Parse the error response.
-                    var error = responseContent.ToObject<HttpResponse>();
-                    response.StatusCode = error.StatusCode;
-                    response.StatusMessage = error.StatusMessage;
-                }
+				// Parse the content.
+				if (content != null) {
+					if (httpResponseMessage.IsSuccessStatusCode) {
+						// Parse the successful the response.
+						response.Body = content.ToObject<T> ();
+					} else {
+						// Parse the error response.
+						var error = content.ToObject<BaseResponse> ();
+						if (error != null) {
+							response.StatusCode = error.StatusCode;
+							response.StatusMessage = error.StatusMessage;
+						}
+					}
+				}
 
-                Debug.WriteLine("HttpStatus={0}; StatusCode={1}; StatusMessage={2}; Data={3}", response.HttpStatus, string.Empty, response.StatusMessage, responseContent);
-                return response;
-            }
-        }
-    }
+				Debug.WriteLine (response);
+				return response;
+			}
+		}
+	}
 }
