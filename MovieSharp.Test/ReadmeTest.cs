@@ -24,7 +24,8 @@ namespace MovieSharp.Test
 				// Iterate through the records returned.
 				var movies = response.Body.Results;
 				foreach (Movie movie in movies) {
-					Console.WriteLine("id={0}; title={1}; voteCount={2}", movie.Id, movie.Title, movie.VoteCount);
+					Console.WriteLine("id={0}; title={1}; voteCount={2}", 
+						movie.Id, movie.Title, movie.VoteCount);
 				}
 			}
 
@@ -32,14 +33,16 @@ namespace MovieSharp.Test
 			BaseResponse<Movie> getMovieResponse = service.GetMovie(122);
 			if (getMovieResponse.IsOk) {
 				Movie movie = getMovieResponse.Body;
-				Console.WriteLine("id={0}; title={1}; voteCount={2}", movie.Id, movie.Title, movie.VoteCount);
+				Console.WriteLine("id={0}; title={1}; voteCount={2}", 
+					movie.Id, movie.Title, movie.VoteCount);
 			}
 
 			// Get collection by id
 			BaseResponse<Collection> getCollectionResponse = service.GetCollection(230);
 			if (getCollectionResponse.IsOk) {
 				Collection collection = getCollectionResponse.Body;
-				Console.WriteLine("id={0}; name={1}; posterPath={2}", collection.Id, collection.Name, collection.PosterPath);
+				Console.WriteLine("id={0}; name={1}; posterPath={2}", 
+					collection.Id, collection.Name, collection.PosterPath);
 			}
 
 			// Get collection images by id
@@ -58,10 +61,14 @@ namespace MovieSharp.Test
 			if (!searchMoviesResponse.IsOk) {
 
 				Console.WriteLine("StatusCode={0}; StatusMessage={1}; HttpStatus={2}; ReasonPhrase={3}",
-					searchMoviesResponse.StatusCode,	// TMDB status code: 6
-					searchMoviesResponse.StatusMessage,	// TMDB status message: Invalid id: The pre-requisite id is invalid or not found.
-					searchMoviesResponse.HttpStatus,	// HTTP status: NotFound (404)
-					searchMoviesResponse.ReasonPhrase	// HTTP reason phrase: Not Found
+					// TMDB status code: 6
+					searchMoviesResponse.StatusCode,
+					// TMDB status message: Invalid id: The pre-requisite id is invalid or not found.
+					searchMoviesResponse.StatusMessage,
+					// HTTP status: NotFound (404)
+					searchMoviesResponse.HttpStatus,
+					// HTTP reason phrase: Not Found
+					searchMoviesResponse.ReasonPhrase
 				);
 
 				// For TMDB status codes see: https://www.themoviedb.org/documentation/api/status-codes
