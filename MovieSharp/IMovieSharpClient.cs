@@ -4,17 +4,26 @@ using MovieSharp.Data;
 
 namespace MovieSharp
 {
-    public interface IMovieSharpClient
-    {
-		Collection GetCollection (int id);
-		Task<Collection> GetCollectionAsync (int id);
-		CollectionImages GetCollectionImages (int id);
-		Task<CollectionImages> GetCollectionImagesAsync (int id);
-		Movie GetMovie (int id);
-		Task<Movie> GetMovieAsync (int id);
-        MoviesResult SearchMovies(string query);
-        Task<MoviesResult> SearchMoviesAsync(string query);
-		CollectionsResult SearchCollections(string query);
-		Task<CollectionsResult> SearchCollectionsAsync(string query);
-    }
+	public interface IMovieSharpClient
+	{
+		BaseResponse<Collection> GetCollection(int id);
+
+		Task<BaseResponse<Collection>> GetCollectionAsync(int id);
+
+		BaseResponse<CollectionImages> GetCollectionImages(int id);
+
+		Task<BaseResponse<CollectionImages>> GetCollectionImagesAsync(int id);
+
+		BaseResponse<Movie> GetMovie(int id);
+
+		Task<BaseResponse<Movie>> GetMovieAsync(int id);
+
+		BaseResponse<MoviesResult> SearchMovies(string query);
+
+		Task<BaseResponse<MoviesResult>> SearchMoviesAsync(string query);
+
+		BaseResponse<CollectionsResult> SearchCollections(string query);
+
+		Task<BaseResponse<CollectionsResult>> SearchCollectionsAsync(string query);
+	}
 }

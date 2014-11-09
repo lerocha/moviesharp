@@ -5,72 +5,54 @@ using NUnit.Framework;
 
 namespace MovieSharp.Test
 {
-    [TestFixture]
-    public class MovieSharpClientTest : AbstractMovieSharpClientTest
-    {
-        [Test]
-        public void MovieSharpClientQuery()
-        {
-            // Arrange
-            var service = new MovieSharpClient(ApiKey);
+	[TestFixture]
+	public class MovieSharpClientTest : AbstractMovieSharpClientTest
+	{
+		[Test]
+		public void MovieSharpClientQuery()
+		{
+			// Arrange
+			var service = new MovieSharpClient(ApiKey);
 
-            // Act
-            MoviesResult response = service.SearchMovies("Godfather");
+			// Act
+			BaseResponse<MoviesResult> response = service.SearchMovies("Godfather");
 
-            // Assert
-            Assert.NotNull(response);
-            Assert.NotNull(response.Results);
-            Assert.True(response.Results.Count > 0);
+			// Assert
+			Assert.NotNull(response);
+			Assert.NotNull(response.Body);
+			Assert.NotNull(response.Body.Results);
+			Assert.True(response.Body.Results.Count > 0);
 
-            foreach (var movie in response.Results)
-            {
-                Console.WriteLine(movie.Title);
-            }
-        }
+			foreach (var movie in response.Body.Results) {
+				Console.WriteLine(movie.Title);
+			}
+		}
 
-        [Test]
-        public void MovieSharpClientQueryAsync()
-        {
-            // Arrange
-            var service = new MovieSharpClient(ApiKey);
+		[Test]
+		public void MovieSharpClientQueryValidatesNull()
+		{
+			// Arrange
+			var service = new MovieSharpClient(ApiKey);
 
-            // Act
-            MoviesResult response = service.SearchMoviesAsync("Godfather").Result;
+			// Act
+			// Assert
+			Assert.Throws<ArgumentNullException>(() => service.SearchMovies(null));
+		}
 
-            // Assert
-            Assert.NotNull(response);
-            Assert.NotNull(response.Results);
-            Assert.True(response.Results.Count > 0);
+		[Test]
+		public void MovieSharpClientQueryFails()
+		{
+			// Arrange
+			var service = new MovieSharpClient(ApiKey);
 
-            foreach (var movie in response.Results)
-            {
-                Console.WriteLine(movie.Title);
-            }
-        }
+			// Act
+			BaseResponse<MoviesResult> response = service.SearchMovies("#");
 
-        [Test]
-        public void MovieSharpClientQueryValidatesNull()
-        {
-            // Arrange
-            var service = new MovieSharpClient(ApiKey);
-
-            // Act
-            // Assert
-            Assert.Throws<ArgumentNullException>(() => service.SearchMovies(null));
-        }
-
-        [Test]
-        public void MovieSharpClientQueryFails()
-        {
-            // Arrange
-            var service = new MovieSharpClient(ApiKey);
-
-            // Act
-            // Assert
-            var exception = Assert.Throws<MovieSharpException>(() => service.SearchMovies("#"));
-            Assert.AreEqual(HttpStatusCode.NotFound, exception.HttpStatus);
-            Assert.AreEqual(6, exception.StatusCode);
-        }
-    }
+			// Assert
+			Assert.NotNull(response);
+			Assert.AreEqual(response.HttpStatus, HttpStatusCode.NotFound);
+			Assert.AreEqual(response.StatusCode, 6);
+		}
+	}
 }
 
