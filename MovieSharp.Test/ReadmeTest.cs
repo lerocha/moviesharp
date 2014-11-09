@@ -18,7 +18,7 @@ namespace MovieSharp.Test
             //-----------------------------------------------------------------------------
 
             // Execute a movie search synchronously
-            MoviesResponse response = service.SearchMovies("Godfather");
+            MoviesResult response = service.SearchMovies("Godfather");
 
             // Iterate through the records returned.
             foreach (Movie movie in response.Results)

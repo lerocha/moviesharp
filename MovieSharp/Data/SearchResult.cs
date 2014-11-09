@@ -5,7 +5,7 @@ using Newtonsoft.Json;
 namespace MovieSharp.Data
 {
 	[DebuggerDisplay("Page={Page}; TotalPages={TotalPages}; TotalResults={TotalResults}")]
-    public class QueryResponse<T> : BaseResponse
+    public class SearchResult<T> : BaseResponse
     {
 		public int Page { get; set; }
 		public List<T> Results { get; set; }

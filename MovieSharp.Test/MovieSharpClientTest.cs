@@ -15,7 +15,7 @@ namespace MovieSharp.Test
             var service = new MovieSharpClient(ApiKey);
 
             // Act
-            MoviesResponse response = service.SearchMovies("Godfather");
+            MoviesResult response = service.SearchMovies("Godfather");
 
             // Assert
             Assert.NotNull(response);
@@ -35,7 +35,7 @@ namespace MovieSharp.Test
             var service = new MovieSharpClient(ApiKey);
 
             // Act
-            MoviesResponse response = service.SearchMoviesAsync("Godfather").Result;
+            MoviesResult response = service.SearchMoviesAsync("Godfather").Result;
 
             // Assert
             Assert.NotNull(response);

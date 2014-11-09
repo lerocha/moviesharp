@@ -87,7 +87,7 @@ namespace MovieSharp
 			return response.Body;
 		}
 
-        public MoviesResponse SearchMovies(string query)
+        public MoviesResult SearchMovies(string query)
         {
             if (query == null) throw new ArgumentNullException("query");
 			var request = new HttpRequestMessage
@@ -95,11 +95,11 @@ namespace MovieSharp
 				RequestUri = new Uri(string.Format("{0}/3/search/movie?api_key={1}&query={2}", DefaultBaseUrl, ApiKey, query)),
 				Method = HttpMethod.Get
 			};
-            var response = ExecuteRequest<MoviesResponse>(request);
+            var response = ExecuteRequest<MoviesResult>(request);
             return response.Body;
         }
 
-        public async Task<MoviesResponse> SearchMoviesAsync(string query)
+        public async Task<MoviesResult> SearchMoviesAsync(string query)
         {
             if (query == null) throw new ArgumentNullException("query");
 			var request = new HttpRequestMessage
@@ -107,11 +107,11 @@ namespace MovieSharp
 				RequestUri = new Uri(string.Format("{0}/3/search/movie?api_key={1}&query={2}", DefaultBaseUrl, ApiKey, query)),
 				Method = HttpMethod.Get
 			};
-            var response = await ExecuteRequestAsync<MoviesResponse>(request);
+            var response = await ExecuteRequestAsync<MoviesResult>(request);
             return response.Body;
         }
 
-		public CollectionsResponse SearchCollections(string query)
+		public CollectionsResult SearchCollections(string query)
 		{
 			if (query == null) throw new ArgumentNullException("query");
 			var request = new HttpRequestMessage
@@ -119,11 +119,11 @@ namespace MovieSharp
 				RequestUri = new Uri(string.Format("{0}/3/search/collection?api_key={1}&query={2}", DefaultBaseUrl, ApiKey, query)),
 				Method = HttpMethod.Get
 			};
-			var response = ExecuteRequest<CollectionsResponse>(request);
+			var response = ExecuteRequest<CollectionsResult>(request);
 			return response.Body;
 		}
 
-		public async Task<CollectionsResponse> SearchCollectionsAsync(string query)
+		public async Task<CollectionsResult> SearchCollectionsAsync(string query)
 		{
 			if (query == null) throw new ArgumentNullException("query");
 			var request = new HttpRequestMessage
@@ -131,7 +131,7 @@ namespace MovieSharp
 				RequestUri = new Uri(string.Format("{0}/3/search/collection?api_key={1}&query={2}", DefaultBaseUrl, ApiKey, query)),
 				Method = HttpMethod.Get
 			};
-			var response = await ExecuteRequestAsync<CollectionsResponse>(request);
+			var response = await ExecuteRequestAsync<CollectionsResult>(request);
 			return response.Body;
 		}
 

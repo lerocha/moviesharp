@@ -12,9 +12,9 @@ namespace MovieSharp
 		Task<CollectionImages> GetCollectionImagesAsync (int id);
 		Movie GetMovie (int id);
 		Task<Movie> GetMovieAsync (int id);
-        MoviesResponse SearchMovies(string query);
-        Task<MoviesResponse> SearchMoviesAsync(string query);
-		CollectionsResponse SearchCollections(string query);
-		Task<CollectionsResponse> SearchCollectionsAsync(string query);
+        MoviesResult SearchMovies(string query);
+        Task<MoviesResult> SearchMoviesAsync(string query);
+		CollectionsResult SearchCollections(string query);
+		Task<CollectionsResult> SearchCollectionsAsync(string query);
     }
 }
