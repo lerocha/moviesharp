@@ -40,13 +40,13 @@ namespace MovieSharp.Test
 		}
 
 		[Test]
-		public void MovieSharpClientQueryFails()
+		public void MovieSharpClientGetMovieFails()
 		{
 			// Arrange
 			var service = new MovieSharpClient(ApiKey);
 
 			// Act
-			BaseResponse<MoviesResult> response = service.SearchMovies("#");
+			BaseResponse<Movie> response = service.GetMovie(66666666);
 
 			// Assert
 			Assert.NotNull(response);

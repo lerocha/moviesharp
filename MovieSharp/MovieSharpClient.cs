@@ -3,6 +3,8 @@ using System.Diagnostics;
 using System.Net.Http;
 using System.Threading.Tasks;
 using MovieSharp.Data;
+using System.Collections.Generic;
+using System.Text;
 
 namespace MovieSharp
 {
@@ -29,7 +31,7 @@ namespace MovieSharp
 		public async Task<BaseResponse<Collection>> GetCollectionAsync(int id)
 		{
 			var request = new HttpRequestMessage {
-				RequestUri = new Uri(string.Format("{0}/3/collection/{1}?api_key={2}", DefaultBaseUrl, id, ApiKey)),
+				RequestUri = createRequestUri("/collection/{0}", id),
 				Method = HttpMethod.Get
 			};
 			var response = await ExecuteRequestAsync<Collection>(request);
@@ -44,7 +46,7 @@ namespace MovieSharp
 		public async Task<BaseResponse<CollectionImages>> GetCollectionImagesAsync(int id)
 		{
 			var request = new HttpRequestMessage {
-				RequestUri = new Uri(string.Format("{0}/3/collection/{1}/images?api_key={2}", DefaultBaseUrl, id, ApiKey)),
+				RequestUri = createRequestUri("/collection/{0}/images", id),
 				Method = HttpMethod.Get
 			};
 			var response = await ExecuteRequestAsync<CollectionImages>(request);
@@ -59,7 +61,7 @@ namespace MovieSharp
 		public async Task<BaseResponse<Movie>> GetMovieAsync(int id)
 		{
 			var request = new HttpRequestMessage {
-				RequestUri = new Uri(string.Format("{0}/3/movie/{1}?api_key={2}", DefaultBaseUrl, id, ApiKey)),
+				RequestUri = createRequestUri("/movie/{0}", id),
 				Method = HttpMethod.Get
 			};
 			var response = await ExecuteRequestAsync<Movie>(request);
@@ -76,7 +78,7 @@ namespace MovieSharp
 		{
 			query.AssertNotNull("query");
 			var request = new HttpRequestMessage {
-				RequestUri = new Uri(string.Format("{0}/3/search/movie?api_key={1}&query={2}", DefaultBaseUrl, ApiKey, query)),
+				RequestUri = createRequestUri("/search/movie?query={0}", query),
 				Method = HttpMethod.Get
 			};
 			var response = await ExecuteRequestAsync<MoviesResult>(request);
@@ -93,7 +95,7 @@ namespace MovieSharp
 		{
 			query.AssertNotNull("query");
 			var request = new HttpRequestMessage {
-				RequestUri = new Uri(string.Format("{0}/3/search/collection?api_key={1}&query={2}", DefaultBaseUrl, ApiKey, query)),
+				RequestUri = createRequestUri("/search/collection?query={0}", query),
 				Method = HttpMethod.Get
 			};
 			var response = await ExecuteRequestAsync<CollectionsResult>(request);
@@ -138,6 +140,29 @@ namespace MovieSharp
 				Debug.WriteLine(response);
 				return response;
 			}
+		}
+
+		private Uri createRequestUri(string resource, params Object[] args) {
+			resource.AssertNotNull("resource");
+
+			StringBuilder builder = new StringBuilder();
+			builder.Append(DefaultBaseUrl);
+			builder.Append("/3");
+
+			if (args!=null) {
+				builder.AppendFormat(resource, args);
+			} else {
+				builder.Append(resource);
+			}
+
+			if (resource.Contains("?")) {
+				builder.AppendFormat("&api_key={0}", ApiKey);
+			} else {
+				builder.AppendFormat("?api_key={0}", ApiKey);
+			}
+
+			string url = builder.ToString();
+			return new Uri(url);
 		}
 	}
 }

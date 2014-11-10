@@ -18,11 +18,11 @@ namespace MovieSharp.Test
 			//-----------------------------------------------------------------------------
 
 			// Execute a movie search synchronously
-			BaseResponse<MoviesResult> response = service.SearchMovies("Godfather");
+			BaseResponse<MoviesResult> searchMoviesResponse = service.SearchMovies("Godfather");
 
-			if (response.IsOk) {
+			if (searchMoviesResponse.IsOk) {
 				// Iterate through the records returned.
-				var movies = response.Body.Results;
+				var movies = searchMoviesResponse.Body.Results;
 				foreach (Movie movie in movies) {
 					Console.WriteLine("id={0}; title={1}; voteCount={2}", 
 						movie.Id, movie.Title, movie.VoteCount);
@@ -55,21 +55,21 @@ namespace MovieSharp.Test
 			//-----------------------------------------------------------------------------
 			// Error Handling
 			//-----------------------------------------------------------------------------
-			var searchMoviesResponse = service.SearchMovies("#");
+			var response = service.GetMovie(66666666);
 
 			// If the response IsOk is false, we got an error back from TMDB API and we need to handle it.
-			if (!searchMoviesResponse.IsOk) {
+			if (!response.IsOk) {
 
 				Console.WriteLine("StatusCode={0}; StatusMessage={1}; HttpStatus={2}; ReasonPhrase={3}",
 					// TMDB status code: 6
 					// For TMDB status codes see: https://www.themoviedb.org/documentation/api/status-codes
-					searchMoviesResponse.StatusCode,
+					response.StatusCode,
 					// TMDB status message: Invalid id: The pre-requisite id is invalid or not found.
-					searchMoviesResponse.StatusMessage,
+					response.StatusMessage,
 					// HTTP status: NotFound (404)
-					searchMoviesResponse.HttpStatus,
+					response.HttpStatus,
 					// HTTP reason phrase: Not Found
-					searchMoviesResponse.ReasonPhrase
+					response.ReasonPhrase
 				);
 
 			}
