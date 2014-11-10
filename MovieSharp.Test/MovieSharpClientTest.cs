@@ -55,6 +55,26 @@ namespace MovieSharp.Test
 		}
 
 		[Test]
+		public void MovieSharpClientGetSimilarMovies()
+		{
+			// Arrange
+			var service = new MovieSharpClient(ApiKey);
+
+			// Act
+			BaseResponse<MoviesResult> response = service.GetSimilarMovies(238, 2);
+
+			// Assert
+			Assert.NotNull(response);
+			Assert.NotNull(response.Body);
+			Assert.NotNull(response.Body.Results);
+			Assert.True(response.Body.Results.Count > 0);
+
+			foreach (var movie in response.Body.Results) {
+				Console.WriteLine(movie.Title);
+			}
+		}
+
+		[Test]
 		public void MovieSharpClientGetUpcomingMovies()
 		{
 			// Arrange

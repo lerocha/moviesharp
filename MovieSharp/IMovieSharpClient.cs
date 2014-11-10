@@ -18,6 +18,10 @@ namespace MovieSharp
 
 		Task<BaseResponse<Movie>> GetMovieAsync(int id);
 
+		BaseResponse<MoviesResult> GetSimilarMovies(int id, int page = 1);
+
+		Task<BaseResponse<MoviesResult>> GetSimilarMoviesAsync(int id, int page = 1);
+
 		BaseResponse<MoviesResult> GetUpcomingMovies();
 
 		Task<BaseResponse<MoviesResult>> GetUpcomingMoviesAsync();

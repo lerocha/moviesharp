@@ -68,6 +68,22 @@ namespace MovieSharp
 			return response;
 		}
 
+		public BaseResponse<MoviesResult> GetSimilarMovies(int id, int page)
+		{
+			return GetSimilarMoviesAsync(id, page).Result;
+		}
+
+		public async Task<BaseResponse<MoviesResult>> GetSimilarMoviesAsync(int id, int page)
+		{
+			var request = new HttpRequestMessage {
+				RequestUri = createRequestUri("/movie/{0}/similar?page={1}", id, page),
+				Method = HttpMethod.Get
+			};
+
+			var response = await ExecuteRequestAsync<MoviesResult>(request);
+			return response;
+		}
+
 		public BaseResponse<MoviesResult> GetUpcomingMovies()
 		{
 			return GetUpcomingMoviesAsync().Result;
