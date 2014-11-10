@@ -68,6 +68,70 @@ namespace MovieSharp
 			return response;
 		}
 
+		public BaseResponse<MoviesResult> GetUpcomingMovies()
+		{
+			return GetUpcomingMoviesAsync().Result;
+		}
+
+		public async Task<BaseResponse<MoviesResult>> GetUpcomingMoviesAsync()
+		{
+			var request = new HttpRequestMessage {
+				RequestUri = createRequestUri("/movie/upcoming"),
+				Method = HttpMethod.Get
+			};
+
+			var response = await ExecuteRequestAsync<MoviesResult>(request);
+			return response;
+		}
+
+		public BaseResponse<MoviesResult> GetNowPlayingMovies()
+		{
+			return GetNowPlayingMoviesAsync().Result;
+		}
+
+		public async Task<BaseResponse<MoviesResult>> GetNowPlayingMoviesAsync()
+		{
+			var request = new HttpRequestMessage {
+				RequestUri = createRequestUri("/movie/now_playing"),
+				Method = HttpMethod.Get
+			};
+
+			var response = await ExecuteRequestAsync<MoviesResult>(request);
+			return response;
+		}
+
+		public BaseResponse<MoviesResult> GetPopularMovies()
+		{
+			return GetPopularMoviesAsync().Result;
+		}
+
+		public async Task<BaseResponse<MoviesResult>> GetPopularMoviesAsync()
+		{
+			var request = new HttpRequestMessage {
+				RequestUri = createRequestUri("/movie/popular"),
+				Method = HttpMethod.Get
+			};
+
+			var response = await ExecuteRequestAsync<MoviesResult>(request);
+			return response;
+		}
+
+		public BaseResponse<MoviesResult> GetTopRatedMovies()
+		{
+			return GetTopRatedMoviesAsync().Result;
+		}
+
+		public async Task<BaseResponse<MoviesResult>> GetTopRatedMoviesAsync()
+		{
+			var request = new HttpRequestMessage {
+				RequestUri = createRequestUri("/movie/top_rated"),
+				Method = HttpMethod.Get
+			};
+
+			var response = await ExecuteRequestAsync<MoviesResult>(request);
+			return response;
+		}
+
 		public BaseResponse<MoviesResult> SearchMovies(string query)
 		{
 			query.AssertNotNull("query");

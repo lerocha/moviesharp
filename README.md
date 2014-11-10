@@ -7,6 +7,10 @@ It implements a simple client for the [The Movie Database][1] targeting multiple
 * Supported Platforms: .NET 4 or later, Xamarin iOS, Xamarin Android, Windows Phone 8, Windows 8, and Silverlight 5
 * Supported APIs:
  * /3/movie/{id}
+ * /3/movie/upcoming
+ * /3/movie/now_playing
+ * /3/movie/latest
+ * /3/movie/top_rated
  * /3/collection/{id}
  * /3/collection/{id}/images
  * /3/search/movie

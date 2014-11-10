@@ -53,6 +53,86 @@ namespace MovieSharp.Test
 			Assert.AreEqual(response.HttpStatus, HttpStatusCode.NotFound);
 			Assert.AreEqual(response.StatusCode, 6);
 		}
+
+		[Test]
+		public void MovieSharpClientGetUpcomingMovies()
+		{
+			// Arrange
+			var service = new MovieSharpClient(ApiKey);
+
+			// Act
+			BaseResponse<MoviesResult> response = service.GetUpcomingMovies();
+
+			// Assert
+			Assert.NotNull(response);
+			Assert.NotNull(response.Body);
+			Assert.NotNull(response.Body.Results);
+			Assert.True(response.Body.Results.Count > 0);
+
+			foreach (var movie in response.Body.Results) {
+				Console.WriteLine(movie.Title);
+			}
+		}
+
+		[Test]
+		public void MovieSharpClientGetNowPlayingMovies()
+		{
+			// Arrange
+			var service = new MovieSharpClient(ApiKey);
+
+			// Act
+			BaseResponse<MoviesResult> response = service.GetNowPlayingMovies();
+
+			// Assert
+			Assert.NotNull(response);
+			Assert.NotNull(response.Body);
+			Assert.NotNull(response.Body.Results);
+			Assert.True(response.Body.Results.Count > 0);
+
+			foreach (var movie in response.Body.Results) {
+				Console.WriteLine(movie.Title);
+			}
+		}
+
+		[Test]
+		public void MovieSharpClientGetPopularMovies()
+		{
+			// Arrange
+			var service = new MovieSharpClient(ApiKey);
+
+			// Act
+			BaseResponse<MoviesResult> response = service.GetPopularMovies();
+
+			// Assert
+			Assert.NotNull(response);
+			Assert.NotNull(response.Body);
+			Assert.NotNull(response.Body.Results);
+			Assert.True(response.Body.Results.Count > 0);
+
+			foreach (var movie in response.Body.Results) {
+				Console.WriteLine(movie.Title);
+			}
+		}
+
+		[Test]
+		public void MovieSharpClientGetTopRatedMovies()
+		{
+			// Arrange
+			var service = new MovieSharpClient(ApiKey);
+
+			// Act
+			BaseResponse<MoviesResult> response = service.GetTopRatedMovies();
+
+			// Assert
+			Assert.NotNull(response);
+			Assert.NotNull(response.Body);
+			Assert.NotNull(response.Body.Results);
+			Assert.True(response.Body.Results.Count > 0);
+
+			foreach (var movie in response.Body.Results) {
+				Console.WriteLine(movie.Title);
+			}
+		}
 	}
 }
 
