@@ -1,10 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 using MovieSharp.Data;
-using System.Collections.Generic;
-using System.Text;
 
 namespace MovieSharp
 {
@@ -68,12 +68,12 @@ namespace MovieSharp
 			return response;
 		}
 
-		public BaseResponse<MoviesResult> GetSimilarMovies(int id, int page)
+		public BaseResponse<MoviesResult> GetSimilarMovies(int id, int page = 1)
 		{
 			return GetSimilarMoviesAsync(id, page).Result;
 		}
 
-		public async Task<BaseResponse<MoviesResult>> GetSimilarMoviesAsync(int id, int page)
+		public async Task<BaseResponse<MoviesResult>> GetSimilarMoviesAsync(int id, int page = 1)
 		{
 			var request = new HttpRequestMessage {
 				RequestUri = createRequestUri("/movie/{0}/similar?page={1}", id, page),
@@ -84,15 +84,15 @@ namespace MovieSharp
 			return response;
 		}
 
-		public BaseResponse<MoviesResult> GetUpcomingMovies()
+		public BaseResponse<MoviesResult> GetUpcomingMovies(int page = 1)
 		{
-			return GetUpcomingMoviesAsync().Result;
+			return GetUpcomingMoviesAsync(page).Result;
 		}
 
-		public async Task<BaseResponse<MoviesResult>> GetUpcomingMoviesAsync()
+		public async Task<BaseResponse<MoviesResult>> GetUpcomingMoviesAsync(int page = 1)
 		{
 			var request = new HttpRequestMessage {
-				RequestUri = createRequestUri("/movie/upcoming"),
+				RequestUri = createRequestUri("/movie/upcoming?page={0}", page),
 				Method = HttpMethod.Get
 			};
 
@@ -100,15 +100,15 @@ namespace MovieSharp
 			return response;
 		}
 
-		public BaseResponse<MoviesResult> GetNowPlayingMovies()
+		public BaseResponse<MoviesResult> GetNowPlayingMovies(int page = 1)
 		{
-			return GetNowPlayingMoviesAsync().Result;
+			return GetNowPlayingMoviesAsync(page).Result;
 		}
 
-		public async Task<BaseResponse<MoviesResult>> GetNowPlayingMoviesAsync()
+		public async Task<BaseResponse<MoviesResult>> GetNowPlayingMoviesAsync(int page = 1)
 		{
 			var request = new HttpRequestMessage {
-				RequestUri = createRequestUri("/movie/now_playing"),
+				RequestUri = createRequestUri("/movie/now_playing?page={0}", page),
 				Method = HttpMethod.Get
 			};
 
@@ -116,15 +116,15 @@ namespace MovieSharp
 			return response;
 		}
 
-		public BaseResponse<MoviesResult> GetPopularMovies()
+		public BaseResponse<MoviesResult> GetPopularMovies(int page = 1)
 		{
-			return GetPopularMoviesAsync().Result;
+			return GetPopularMoviesAsync(page).Result;
 		}
 
-		public async Task<BaseResponse<MoviesResult>> GetPopularMoviesAsync()
+		public async Task<BaseResponse<MoviesResult>> GetPopularMoviesAsync(int page = 1)
 		{
 			var request = new HttpRequestMessage {
-				RequestUri = createRequestUri("/movie/popular"),
+				RequestUri = createRequestUri("/movie/popular?page={0}", page),
 				Method = HttpMethod.Get
 			};
 
@@ -132,15 +132,15 @@ namespace MovieSharp
 			return response;
 		}
 
-		public BaseResponse<MoviesResult> GetTopRatedMovies()
+		public BaseResponse<MoviesResult> GetTopRatedMovies(int page = 1)
 		{
-			return GetTopRatedMoviesAsync().Result;
+			return GetTopRatedMoviesAsync(page).Result;
 		}
 
-		public async Task<BaseResponse<MoviesResult>> GetTopRatedMoviesAsync()
+		public async Task<BaseResponse<MoviesResult>> GetTopRatedMoviesAsync(int page = 1)
 		{
 			var request = new HttpRequestMessage {
-				RequestUri = createRequestUri("/movie/top_rated"),
+				RequestUri = createRequestUri("/movie/top_rated?page={0}", page),
 				Method = HttpMethod.Get
 			};
 
@@ -222,14 +222,15 @@ namespace MovieSharp
 			}
 		}
 
-		private Uri createRequestUri(string resource, params Object[] args) {
+		private Uri createRequestUri(string resource, params Object[] args)
+		{
 			resource.AssertNotNull("resource");
 
 			StringBuilder builder = new StringBuilder();
 			builder.Append(DefaultBaseUrl);
 			builder.Append("/3");
 
-			if (args!=null) {
+			if (args != null) {
 				builder.AppendFormat(resource, args);
 			} else {
 				builder.Append(resource);

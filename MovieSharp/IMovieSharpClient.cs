@@ -22,21 +22,21 @@ namespace MovieSharp
 
 		Task<BaseResponse<MoviesResult>> GetSimilarMoviesAsync(int id, int page = 1);
 
-		BaseResponse<MoviesResult> GetUpcomingMovies();
+		BaseResponse<MoviesResult> GetUpcomingMovies(int page = 1);
 
-		Task<BaseResponse<MoviesResult>> GetUpcomingMoviesAsync();
+		Task<BaseResponse<MoviesResult>> GetUpcomingMoviesAsync(int page = 1);
 
-		BaseResponse<MoviesResult> GetNowPlayingMovies();
+		BaseResponse<MoviesResult> GetNowPlayingMovies(int page = 1);
 
-		Task<BaseResponse<MoviesResult>> GetNowPlayingMoviesAsync();
+		Task<BaseResponse<MoviesResult>> GetNowPlayingMoviesAsync(int page = 1);
 
-		BaseResponse<MoviesResult> GetPopularMovies();
+		BaseResponse<MoviesResult> GetPopularMovies(int page = 1);
 
-		Task<BaseResponse<MoviesResult>> GetPopularMoviesAsync();
+		Task<BaseResponse<MoviesResult>> GetPopularMoviesAsync(int page = 1);
 
-		BaseResponse<MoviesResult> GetTopRatedMovies();
+		BaseResponse<MoviesResult> GetTopRatedMovies(int page = 1);
 
-		Task<BaseResponse<MoviesResult>> GetTopRatedMoviesAsync();
+		Task<BaseResponse<MoviesResult>> GetTopRatedMoviesAsync(int page = 1);
 
 		BaseResponse<MoviesResult> SearchMovies(string query);
 
