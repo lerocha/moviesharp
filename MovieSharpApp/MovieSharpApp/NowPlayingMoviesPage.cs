@@ -41,11 +41,8 @@ namespace MovieSharpApp
 
 				var response = await movieSharpClient.GetNowPlayingMoviesAsync();
 				if (response.IsOk) {
-					List<string> movies = new List<String>();
-					foreach(Movie movie in response.Body.Results) {
-						movies.Add(movie.Title);
-					}
-					listView.ItemsSource = movies;
+					listView.ItemsSource = response.Body.Results;
+					listView.ItemTemplate = new DataTemplate(typeof(MovieCell));
 				}
 			} catch (Exception e) {
 				// TODO: handle exception
