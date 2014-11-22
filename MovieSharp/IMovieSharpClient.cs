@@ -6,6 +6,10 @@ namespace MovieSharp
 {
 	public interface IMovieSharpClient
 	{
+		BaseResponse<Configuration> GetConfiguration();
+
+		Task<BaseResponse<Configuration>> GetConfigurationAsync();
+
 		BaseResponse<Collection> GetCollection(int id);
 
 		Task<BaseResponse<Collection>> GetCollectionAsync(int id);

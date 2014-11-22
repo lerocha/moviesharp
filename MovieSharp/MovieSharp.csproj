@@ -52,6 +52,8 @@
     <Compile Include="Data\SearchResult.cs" />
     <Compile Include="Data\MoviesResult.cs" />
     <Compile Include="Data\CollectionsResult.cs" />
+    <Compile Include="Data\Configuration.cs" />
+    <Compile Include="Data\Images.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

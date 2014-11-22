@@ -37,7 +37,7 @@ namespace MovieSharpApp
 
 			try {
 				// TODO: replace with the real API key
-				IMovieSharpClient movieSharpClient = new MovieSharpClient("_YOUR_API_KEY_");
+				IMovieSharpClient movieSharpClient = new MovieSharpClient("c2c73ebd1e25cbc29cf61158c04ad78a");
 
 				var response = await movieSharpClient.GetNowPlayingMoviesAsync();
 				if (response.IsOk) {

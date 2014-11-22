@@ -9,6 +9,23 @@ namespace MovieSharp.Test
 	public class MovieSharpClientTest : AbstractMovieSharpClientTest
 	{
 		[Test]
+		public void MovieSharpClientConfiguration()
+		{
+			// Arrange
+			var service = new MovieSharpClient(ApiKey);
+
+			// Act
+			BaseResponse<Configuration> response = service.GetConfiguration();
+
+			// Assert
+			Assert.NotNull(response);
+			Assert.NotNull(response.Body);
+			Assert.NotNull(response.Body.ChangeKeys);
+			Assert.IsTrue(response.Body.ChangeKeys.Count > 0);
+			Assert.NotNull(response.Body.Images);
+		}
+
+		[Test]
 		public void MovieSharpClientQuery()
 		{
 			// Arrange

@@ -23,6 +23,21 @@ namespace MovieSharp
 			ApiKey = apiKey;
 		}
 
+		public BaseResponse<Configuration> GetConfiguration()
+		{
+			return GetConfigurationAsync().Result;
+		}
+
+		public async Task<BaseResponse<Configuration>> GetConfigurationAsync()
+		{
+			var request = new HttpRequestMessage {
+				RequestUri = createRequestUri("/configuration"),
+				Method = HttpMethod.Get
+			};
+			var response = await ExecuteRequestAsync<Configuration>(request);
+			return response;
+		}
+
 		public BaseResponse<Collection> GetCollection(int id)
 		{
 			return GetCollectionAsync(id).Result;

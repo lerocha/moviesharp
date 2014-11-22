@@ -7,6 +7,7 @@ namespace MovieSharpApp
 	{
 		public MovieCell()
 		{
+			// TODO: add PosterPath  http://image.tmdb.org/t/p/w500/nBNZadXqJSdt05SHLqgT0HuC5Gm.jpg
 			// Movie title label.
 			var titleLabel = new Label {
 				HorizontalOptions = LayoutOptions.FillAndExpand
